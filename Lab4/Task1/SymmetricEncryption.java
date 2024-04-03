@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Base64;
 
 public class SymmetricEncryption {
     // Функція для шифрування тексту
@@ -11,17 +12,14 @@ public class SymmetricEncryption {
             plaintextBytes[i] = (byte) (plaintextBytes[i] + key[i % key.length][i % key[i % key.length].length]);
         }
 
-        // Перетворення зшифрованого масиву байтів у рядок
-        return Arrays.toString(plaintextBytes);
+        // Перетворення зшифрованого масиву байтів у рядок за допомогою Base64
+        return Base64.getEncoder().encodeToString(plaintextBytes);
     }
+
     // Функція для дешифрування тексту
     public static String decrypt(String ciphertext, int[][] key) {
-        // Перетворення рядка у масив байтів
-        String[] bytesString = ciphertext.substring(1, ciphertext.length() - 1).split(", ");
-        byte[] ciphertextBytes = new byte[bytesString.length];
-        for (int i = 0; i < bytesString.length; i++) {
-            ciphertextBytes[i] = Byte.parseByte(bytesString[i]);
-        }
+        // Перетворення Base64 рядка у масив байтів
+        byte[] ciphertextBytes = Base64.getDecoder().decode(ciphertext);
 
         // Дешифрування кожного байта масиву ciphertextBytes за допомогою ключа
         for (int i = 0; i < ciphertextBytes.length; i++) {
@@ -31,8 +29,9 @@ public class SymmetricEncryption {
         // Перетворення розшифрованого масиву байтів у рядок
         return new String(ciphertextBytes);
     }
+
     public static void main(String[] args) {
-        // Приклад використання
+
         int[][] key = {{1,2,3},{4,5,6},{7,8,9}}; // Ключ
 
         String plaintext = "Hello World"; // Текст для шифрування
