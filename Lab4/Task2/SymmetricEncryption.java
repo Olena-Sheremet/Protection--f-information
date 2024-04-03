@@ -36,7 +36,7 @@ public class SymmetricEncryption {
         String plaintext = "Hello World"; // Текст для шифрування
         System.out.println("Початковий текст: " + plaintext);
 
-        // Генерація гами
+        // Генерація гами 
         byte[] gamma = generateGamma(plaintext.length());
 
         String ciphertext = encrypt(plaintext, gamma); // Шифрування
