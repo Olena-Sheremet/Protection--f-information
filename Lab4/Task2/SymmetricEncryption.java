@@ -33,7 +33,7 @@ public class SymmetricEncryption {
     public static void main(String[] args) {
         int[][] key = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}; // Ключ
 
-        String plaintext = "Hello World"; // Текст для шифрування
+        String plaintext = "Hello World"; // Текст для шифрування 
         System.out.println("Початковий текст: " + plaintext);
 
         // Генерація гами 
